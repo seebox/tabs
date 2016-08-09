@@ -1,0 +1,22 @@
+<ion-view view-title="通知公告">
+  <ion-content>
+
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="playlist in playlists" type="item-text-wrap" href="#/tab/anno/{{playlist.id}}">
+        <img ng-src="{{$host}}{{playlist.sender.avatar48}}?token={{$token}}">
+        <h2>{{playlist.title}}</h2>
+        <p>{{playlist.sender.name}}-{{playlist.sender.ops}}</p>
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          置为已读
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll ng-if="moreDataCanBeLoaded()" on-infinite="loadAnnoData()">
+    </ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>
