@@ -3,7 +3,7 @@
     <ion-list>
       <div class="grid9" ng-repeat="playlist in playlists" ng-click="active(playlist)" type="item-text-wrap">
         <a href="#/tab/work/{{playlist.en}}">
-          <img ng-src="img/{{playlist.en}}.png">
+          <img ng-src="{{playlist.icon}}">
           <div>{{playlist.name}}</div>
         </a>
       </div>
