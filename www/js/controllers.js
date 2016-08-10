@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LoginCtrl', function($scope, $http, $rootScope, $state,$ionicLoading,$ionicBackdrop) {
+.controller('LoginCtrl', function($scope, $http, $rootScope, $state, $ionicLoading, $ionicBackdrop) {
   $scope.isAuth = window.localStorage.username;
   $scope.loginData = {};
   $scope.doLogin = function(username, passowrd) {
@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
     var account = $scope.loginData.username || username;
     var password = $scope.loginData.password || passowrd;
 
-    $http.post($rootScope.$host+'/gettoken', {
+    $http.post($rootScope.$host + '/gettoken', {
       account: account,
       password: password
     }).success(function(data) {
@@ -19,16 +19,17 @@ angular.module('starter.controllers', [])
         window.localStorage.password = password;
         $rootScope.$token = data.user_info.token;
         $ionicLoading.hide();
-         $state.go("tab.work", {}, {location:false,
-           reload: true
-         });
+        $state.go("tab.work", {}, {
+          location: false,
+          reload: true
+        });
       }
     });
   };
 
   if (false && window.localStorage.username && window.localStorage.password) {
     $ionicLoading.show({
-     template: '正在加载...'
+      template: '正在加载...'
     });
     $scope.doLogin(window.localStorage.username,
       window.localStorage.password);
@@ -82,7 +83,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AnnoDetailCtrl', function($scope, $http, $rootScope, $stateParams,$ionicModal) {
+.controller('AnnoDetailCtrl', function($scope, $http, $rootScope, $stateParams, $ionicModal) {
   $http.get($rootScope.$host + '/lua-api/v1/card/get?id=' + $stateParams.id).success(function(data) {
     if (data.error) {
 
@@ -100,16 +101,23 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
   $scope.preview = function(atm) {
-    if(atm.type == 'pdf'){
-      if (atm.pagecount) {
-  			var urls = [];
-  			for (var i = 1; i <= atm.pagecount; i++) {
-  				urls.push($rootScope.$host +'/wx/pdf/page/' + atm.id + '/' + i.toString()+'.png?token='+$rootScope.$token);
-  			}
-        $scope.pics = urls;
-	  	}
+    if (atm.type == 'pdf' && atm.pagecount) {
+        var items = [];
+        for (var i = 1; i <= atm.pagecount; i++) {
+          items.push({
+            src: $rootScope.$host + '/wx/pdf/page/' + atm.id + '/' + i.toString() + '.png',
+            w: 800,
+            h: 1200
+          });
+        }
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+        // define options (if needed)
+        var options = {
+          history: false
+        };
+        // Initializes and opens PhotoSwipe
+        new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options).init();
     }
-    $scope.modal.show();
   };
   $scope.closeModal = function() {
     $scope.modal.hide();

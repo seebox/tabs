@@ -8,7 +8,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
       $rootScope.$host = 'http://218.249.66.27:8888';
-
+      //启动极光推送服务
+      window.plugins.jPushPlugin.init();
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -20,13 +21,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       //$state.go("login",{},{reload:true});
       window.location.href = 'login.html';
     }
-
-    //启动极光推送服务
-    window.plugins.jPushPlugin.init();
-
-                  //  window.cordova.plugins.jPushPlugin.setDebugMode(true);
-                  //  window.cordova.plugins.jPushPlugin.setStatisticsOpen(true);
-
 
   });
 })
