@@ -96,21 +96,6 @@ angular.module('starter.controllersd', [])
       $preview.pdf(atm);
     }
   };
-  // $ionicPlatform.registerBackButtonAction(function (e) {
-  //   if($rootScope.pswp){
-  //     $rootScope.pswp.close();
-  //     delete $rootScope.pswp;
-  //     return false;
-  //   }
-  // }, 100);
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-  //当我们用到模型时，清除它！
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
-
 })
 
 

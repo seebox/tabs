@@ -10,7 +10,5 @@ angular.module('starter.controllers', [])
   $scope.active = function(item) {
     $rootScope.workTitle = item.name;
   }
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+
 })
