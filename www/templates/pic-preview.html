@@ -1,12 +1,36 @@
 <div class="modal">
-    <ion-header-bar>
-      <h1 class="title">我的模型标题</h1>
-    </ion-header-bar>
-    <ion-content>
-      <ion-slide-box>
-        <ion-slide ng-repeat="pic in pics">
-          <div class="box blue"><img ng-src="{{pic}}"></div>
-        </ion-slide>
-      </ion-slide-box>
-    </ion-content>
+  <!--
+      The preview
+    -->
+  <div id="imagepreview" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+      <div class="pswp__ui pswp__ui--hidden">
+        <div class="pswp__top-bar">
+          <div class="pswp__counter"></div>
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
   </div>
+
+</div>

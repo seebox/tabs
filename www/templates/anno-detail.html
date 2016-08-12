@@ -2,10 +2,12 @@
   <ion-content class="padding">
 
     <h2>{{annodata.title}}</h2>
-    <p>{{annodata.content}}</p>
+    <p ng-bind-html="annodata.content|to_html"></p>
 
-    <div class="item" ng-repeat="atm in annodata.atms">
-      <a href="javascript:;" ng-click="preview(atm)">{{atm.fileName}}</a>
+    <div class="list list-inset" ng-repeat="atm in annodata.atms">
+      <div class="item">
+        <a href="javascript:;" ng-click="preview(atm)">{{atm.fileName}}</a>
+      </div>
     </div>
 
   </ion-content>

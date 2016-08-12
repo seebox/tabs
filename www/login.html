@@ -23,30 +23,26 @@
 </head>
 
 <body ng-app="myApp" ng-controller="Login">
-
-  <ion-nav-bar class="bar-stable" ng-show="!isAuth">
-
-  </ion-nav-bar>
-  <ion-view ng-show="!isAuth" style="display:none;">
-    <ion-header-bar>
-      <h1 class="title"></h1>
-    </ion-header-bar>
-    <ion-content>
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">wti账号</span>
-          <input type="text" ng-model="loginData.username" value="shenxh">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">密码</span>
-          <input type="password" ng-model="loginData.password" value="shen1234">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="button" ng-click="doLogin()">登录</button>
-        </label>
+  <div class="view-container">
+      <div class="bar bar-header">
+        <div class="h1 title">登录</div>
       </div>
-    </ion-content>
-  </ion-view>
+      <div class="content has-header">
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">wti账号</span>
+            <input type="text" ng-model="loginData.username">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">密码</span>
+            <input type="password" ng-model="loginData.password">
+          </label>
+        </div>
+        <div class="padding">
+          <button class="button button-block button-positive" ng-click="doLogin()">确认登录</button>
+        </div>
+      </div>
+    </div>
   <script>
     angular.module('myApp', ['ionic'])
       .controller('Login', function($ionicPlatform,$scope,$http,$ionicPopup,$timeout,$ionicLoading) {
@@ -64,12 +60,13 @@
            template: '正在加载...'
           });
           $http.post(host + '/gettoken', {
-            account: 'shenxh',//$scope.loginData.username,
-            password: '1234'//$scope.loginData.password
+            account: $scope.loginData.username,
+            password: $scope.loginData.password
           }).success(function(data) {
-
+            $ionicLoading.hide();
             if (data.res_code == 100) {
-              window.localStorage.setItem('token', data.user_info.token);
+              window.localStorage.token = data.user_info.token;
+              window.localStorage.acc = $scope.loginData.username;
               $ionicLoading.hide();
               window.location.href = 'index.html';
               //history.replaceState({}, "page", "index.html");
@@ -78,13 +75,14 @@
                  title: '提示',
                  template: data.res_msg
               });
+              $ionicLoading.hide();
               $timeout(function() {
                   alertPopup.close();
                }, 3000);
             }
           });
         };
-        $scope.doLogin();
+
       });
       });
   </script>

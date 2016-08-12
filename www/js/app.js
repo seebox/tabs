@@ -1,15 +1,16 @@
 // Ionic Starter App
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers','starter.controllersd', 'starter.services'])
 
-.run(function($ionicPlatform, $rootScope, $state, $location) {
+.run(function($ionicPlatform, $rootScope, $state, $location,$ionicModal) {
   $ionicPlatform.ready(function() {
     $rootScope.$host = '';
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-      $rootScope.$host = 'http://218.249.66.27:8888';
+      $rootScope.$host = 'http://218.249.66.27:8888/';
       //启动极光推送服务
       window.plugins.jPushPlugin.init();
+      window.plugins.jPushPlugin.setTagsWithAlias([], window.localStorage.acc);
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -21,7 +22,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       //$state.go("login",{},{reload:true});
       window.location.href = 'login.html';
     }
-
+    $ionicModal.fromTemplateUrl('templates/pic-preview.html', {
+      scope: $rootScope,
+      animation: false,
+      backdropClickToClose: true
+    }).then(function(modal) {
+      $rootScope.preview = modal;
+    });
   });
 })
 
@@ -147,4 +154,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   authInterceptor.$inject = ['$location', '$injector','$q'];
   $httpProvider.interceptors.push(authInterceptor);
 
-}]);
+}])
+.filter(
+    'to_html', ['$sce', function ($sce) {
+        return function (text) {
+            return $sce.trustAsHtml(text);
+        }
+    }]
+) ;

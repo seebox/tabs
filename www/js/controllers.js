@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllersd', [])
 
 .controller('LoginCtrl', function($scope, $http, $rootScope, $state, $ionicLoading, $ionicBackdrop) {
   $scope.isAuth = window.localStorage.username;
@@ -78,12 +78,10 @@ angular.module('starter.controllers', [])
   $scope.active = function(item) {
     $rootScope.title = item.name;
   }
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+
 })
 
-.controller('AnnoDetailCtrl', function($scope, $http, $rootScope, $stateParams, $ionicModal) {
+.controller('AnnoDetailCtrl', function($scope, $http, $rootScope, $stateParams,$ionicPlatform,$preview,$state) {
   $http.get($rootScope.$host + '/lua-api/v1/card/get?id=' + $stateParams.id).success(function(data) {
     if (data.error) {
 
@@ -93,32 +91,18 @@ angular.module('starter.controllers', [])
 
   });
 
-  $ionicModal.fromTemplateUrl('templates/pic-preview.html', {
-    scope: $scope,
-    animation: 'slide-in-up',
-    backdropClickToClose: true
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
   $scope.preview = function(atm) {
-    if (atm.type == 'pdf' && atm.pagecount) {
-        var items = [];
-        for (var i = 1; i <= atm.pagecount; i++) {
-          items.push({
-            src: $rootScope.$host + '/wx/pdf/page/' + atm.id + '/' + i.toString() + '.png',
-            w: 800,
-            h: 1200
-          });
-        }
-        var pswpElement = document.querySelectorAll('.pswp')[0];
-        // define options (if needed)
-        var options = {
-          history: false
-        };
-        // Initializes and opens PhotoSwipe
-        new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options).init();
+    if (atm.type == 'pdf') {
+      $preview.pdf(atm);
     }
   };
+  // $ionicPlatform.registerBackButtonAction(function (e) {
+  //   if($rootScope.pswp){
+  //     $rootScope.pswp.close();
+  //     delete $rootScope.pswp;
+  //     return false;
+  //   }
+  // }, 100);
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
@@ -178,4 +162,9 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+  $scope.logout = function(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("acc");
+    window.location.href = "login.html";
+  }
 });

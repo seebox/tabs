@@ -20,14 +20,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
-    {
-      "variables": {
-        "API_KEY": "bc4ef211975f6ec8f793e291"
-      },
-      "locator": "https://github.com/jpush/jpush-phonegap-plugin.git",
-      "id": "jpush-phonegap-plugin"
-    }
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
     "android"

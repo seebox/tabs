@@ -1,18 +1,23 @@
 <ion-view view-title="设置">
   <ion-content>
+    <div class="list">
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          性别
+        </div>
+        <select>
+          <option>男</option>
+          <option selected>女</option>
+        </select>
+      </label>
+
+    </div>
     <ion-list>
       <ion-toggle ng-model="settings.enableFriends">
         接收通知
       </ion-toggle>
     </ion-list>
-    <div class="list list-inset">
-      <label class="item item-input">
-        <input type="text" placeholder="First Name">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Last Name">
-      </label>
-    </div>
     <div class="list list-inset">
       <div class="item">
         Raiders of the Lost Ark
@@ -23,17 +28,7 @@
         This is a basic Card which contains an item that has wrapping text.
       </div>
     </div>
-    <div class="card">
-      <div class="item item-divider">
-        I'm a Header in a Card!
-      </div>
-      <div class="item item-text-wrap">
-        This is a basic Card with some text.
-      </div>
-      <div class="item item-divider">
-        I'm a Footer in a Card!
-      </div>
-    </div>
+
     <div class="list card">
 
       <a href="#" class="item item-icon-left">
@@ -53,5 +48,8 @@
       </a>
 
     </div>
+    <button class="button button-block button-dark" ng-click="logout()">
+      退出登录
+    </button>
   </ion-content>
 </ion-view>

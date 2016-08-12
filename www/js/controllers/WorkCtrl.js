@@ -1,7 +1,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller('WorkCtrl', function($scope, $http, $rootScope, Chats) {
+.controller('WorkCtrl', function($scope, $http, $rootScope) {
 
   $http.get($rootScope.$host + '/lua-api/v1/app/commonlist').success(function(data) {
     $scope.playlists = data;
