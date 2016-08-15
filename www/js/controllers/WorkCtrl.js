@@ -12,6 +12,7 @@ angular.module('starter.controllers', []).controller('WorkCtrl', function($scope
 		'width':'100%',
 		'height':'auto'
 	};
+	
 	$scope.onTouch = function($event) {
 		oY = $event.target.offsetTop;
 	};
@@ -25,7 +26,7 @@ angular.module('starter.controllers', []).controller('WorkCtrl', function($scope
 
 	$scope.onDrag = function($event) {
 		dY = $event.gesture.deltaY;
-		console.log(dY);
+		console.log(oY);
 		$scope.bannerStyle.height = oY+dY + 'px';
 		$scope.bannerStyle.width='auto';
 	};
