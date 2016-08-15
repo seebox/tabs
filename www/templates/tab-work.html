@@ -1,12 +1,15 @@
 <ion-view view-title="办公审批">
-  <ion-content>
-    <ion-list>
-      <div class="grid9" ng-repeat="playlist in playlists" ng-click="active(playlist)" type="item-text-wrap">
-        <a href="#/tab/work/{{playlist.en}}">
-          <img ng-src="{{$host}}{{playlist.icon}}?token={{$token}}">
-          <div>{{playlist.name}}</div>
-        </a>
-      </div>
-    </ion-list>
-  </ion-content>
+	<ion-content>
+		<ion-list>
+			<div>
+				<img src="./img/work_banner.png" ng-style="bannerStyle">
+			</div>
+			<div on-touch="onTouch($event)" on-release="onRelease($event)" on-drag="onDrag($event)" class="grid9" ng-repeat="playlist in playlists" ng-click="active(playlist)" type="item-text-wrap">
+				<a href="#/tab/work/{{playlist.en}}"> <img ng-src="{{$host}}{{playlist.icon}}?token={{$token}}">
+				<div>
+					{{playlist.name}}
+				</div> </a>
+			</div>
+		</ion-list>
+	</ion-content>
 </ion-view>

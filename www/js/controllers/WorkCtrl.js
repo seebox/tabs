@@ -1,14 +1,33 @@
+angular.module('starter.controllers', []).controller('WorkCtrl', function($scope, $http, $rootScope) {
 
-angular.module('starter.controllers', [])
+	$http.get($rootScope.$host + '/lua-api/v1/app/commonlist').success(function(data) {
+		$scope.playlists = data;
+	});
 
-.controller('WorkCtrl', function($scope, $http, $rootScope) {
+	$scope.active = function(item) {
+		$rootScope.workTitle = item.name;
+	};
+	
+	$scope.bannerStyle={
+		'width':'100%',
+		'height':'auto'
+	};
+	$scope.onTouch = function($event) {
+		oY = $event.target.offsetTop;
+	};
+	
+	$scope.onRelease=function($event){
+		$scope.bannerStyle={
+			'width':'100%',
+			'height':'auto'
+		};
+	};
 
-  $http.get($rootScope.$host + '/lua-api/v1/app/commonlist').success(function(data) {
-    $scope.playlists = data;
-  });
+	$scope.onDrag = function($event) {
+		dY = $event.gesture.deltaY;
+		console.log(dY);
+		$scope.bannerStyle.height = oY+dY + 'px';
+		$scope.bannerStyle.width='auto';
+	};
 
-  $scope.active = function(item) {
-    $rootScope.workTitle = item.name;
-  }
-
-})
+});
