@@ -32,10 +32,18 @@ angular.module('starter.controllers', [])
 		var top=angular.element("#banner").offset().top;
 		console.log(top);
 		if(dY>0){
-			$scope.bannerStyle={
-				'width':'auto',
-				'height':oH+dY + 'px'
-			};
+			if(top>47){
+				$scope.bannerStyle={
+					'width':'auto',
+					'height':dY + 'px'
+				};
+			}else{
+				$scope.bannerStyle={
+					'width':'auto',
+					'height':oH+dY + 'px'
+				};
+			}
+			
 		}
 		
 	};

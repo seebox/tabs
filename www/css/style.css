@@ -1,23 +1,25 @@
 .grid9 {
-  display: inline-block;
-  width: 25%;
-  height: 0;
-  padding-bottom: 25%;
-  color: #333;
-  text-align: center;
+	display: inline-block;
+	width: 25%;
+	height: 0;
+	padding-bottom: 25%;
+	color: #333;
+	text-align: center;
+	border-bottom: solid 1px #eee;
+	border-right: solid 1px #eee;
 }
 
 /* Empty. Add your own CSS if you like */
 
 .grid9 img {
-  width: 50%;
-  margin-top: 25%;
-  border-radius: 3px;
+	width: 33%;
+	/*margin-top: 25%;*/
+	border-radius: 3px;
 }
 .grid9 a {
-  text-decoration: none;
-  color: #333;
+	text-decoration: none;
+	color: #333;
 }
 .item, .item h2 {
-  white-space: normal;
+	white-space: normal;
 }

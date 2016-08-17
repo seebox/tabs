@@ -4,13 +4,15 @@
 			<div id="banner">
 				<img src="./img/work_banner.png" style="margin-top: -1px;display:block;" ng-style="bannerStyle">
 			</div>
-			
+
 			<div class="worklist" on-touch="onTouch($event)" on-release="onRelease($event)" on-drag="onDrag($event)">
 				<div class="grid9" ng-repeat="playlist in playlists" ng-click="active(playlist)" type="item-text-wrap">
-					<a href="#/tab/work/{{playlist.en}}"> <img ng-src="{{$host}}{{playlist.icon}}?token={{$token}}">
-					<div>
-						{{playlist.name}}
-					</div> </a>
+					<div style="margin-top:25%;">
+						<a href="#/tab/work/{{playlist.en}}"> <img ng-src="{{$host}}{{playlist.icon}}?token={{$token}}">
+						<div>
+							{{playlist.name}}
+						</div> </a>
+					</div>
 				</div>
 			</div>
 		</ion-list>
