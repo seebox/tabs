@@ -1,6 +1,9 @@
 $controllers
 
 .controller('WorkCtrl', function($scope, $http, $rootScope) {
+	
+})
+.controller('WorkCtrl', function($scope, $http, $rootScope) {
 
 	$http.get($rootScope.$host + '/lua-api/v1/app/commonlist').success(function(data) {
 		$scope.playlists = data;
