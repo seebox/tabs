@@ -24,3 +24,21 @@
 .item, .item h2 {
 	white-space: normal;
 }
+
+/* communal */
+
+.t-center{
+	text-align:center;
+}
+
+/* tab-works */
+
+.jump-m-w{
+	color:black;
+	float:right;
+	font-size:20px;
+}
+.jump-w{
+	color:black;
+	text-decoration:none;
+}
