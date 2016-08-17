@@ -1,4 +1,5 @@
-angular.module('starter.controllers', []).controller('WorkCtrl', function($scope, $http, $rootScope) {
+angular.module('starter.controllers', [])
+.controller('WorkCtrl', function($scope, $http, $rootScope) {
 
 	$http.get($rootScope.$host + '/lua-api/v1/app/commonlist').success(function(data) {
 		$scope.playlists = data;
@@ -12,8 +13,11 @@ angular.module('starter.controllers', []).controller('WorkCtrl', function($scope
 		'width':'100%',
 		'height':'auto'
 	};
+	
+	var oH;
+	
 	$scope.onTouch = function($event) {
-		oY = $event.target.offsetTop;
+		oH=angular.element('#banner').height();
 	};
 	
 	$scope.onRelease=function($event){
@@ -24,10 +28,24 @@ angular.module('starter.controllers', []).controller('WorkCtrl', function($scope
 	};
 
 	$scope.onDrag = function($event) {
-		dY = $event.gesture.deltaY;
-		console.log(dY);
-		$scope.bannerStyle.height = oY+dY + 'px';
-		$scope.bannerStyle.width='auto';
+		var dY = $event.gesture.deltaY;
+		var top=angular.element("#banner").offset().top;
+		console.log(top);
+		if(dY>0){
+			if(top>47){
+				$scope.bannerStyle={
+					'width':'auto',
+					'height':dY + 'px'
+				};
+			}else{
+				$scope.bannerStyle={
+					'width':'auto',
+					'height':oH+dY + 'px'
+				};
+			}
+			
+		}
+		
 	};
 
 });
