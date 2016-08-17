@@ -1,4 +1,5 @@
-angular.module('starter.controllers', [])
+$controllers
+
 .controller('WorkCtrl', function($scope, $http, $rootScope) {
 
 	$http.get($rootScope.$host + '/lua-api/v1/app/commonlist').success(function(data) {
@@ -8,18 +9,18 @@ angular.module('starter.controllers', [])
 	$scope.active = function(item) {
 		$rootScope.workTitle = item.name;
 	};
-	
+
 	$scope.bannerStyle={
 		'width':'100%',
 		'height':'auto'
 	};
-	
+
 	var oH;
-	
+
 	$scope.onTouch = function($event) {
 		oH=angular.element('#banner').height();
 	};
-	
+
 	$scope.onRelease=function($event){
 		$scope.bannerStyle={
 			'width':'100%',
@@ -43,9 +44,9 @@ angular.module('starter.controllers', [])
 					'height':oH+dY + 'px'
 				};
 			}
-			
+
 		}
-		
+
 	};
 
 });

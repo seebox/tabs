@@ -1,55 +1,49 @@
 <ion-view view-title="设置">
   <ion-content>
+    <div class="calm-bg" style="height:120px;text-align:center;"><img class="padding" style="border-radius: 50%;" src="http://www.phonegap100.com/data/pgapp/1444842421.png"></div>
     <div class="list">
-
-      <label class="item item-input item-select">
-        <div class="input-label">
-          性别
-        </div>
-        <select>
-          <option>男</option>
-          <option selected>女</option>
-        </select>
-      </label>
-
-    </div>
-    <ion-list>
-      <ion-toggle ng-model="settings.enableFriends">
-        接收通知
-      </ion-toggle>
-    </ion-list>
-    <div class="list list-inset">
-      <div class="item">
-        Raiders of the Lost Ark
-      </div>
-    </div>
-    <div class="card">
-      <div class="item item-text-wrap">
-        This is a basic Card which contains an item that has wrapping text.
-      </div>
-    </div>
-
-    <div class="list card">
-
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-home"></i> Enter home address
+      <div class="item item-divider">
+个人信息
+  </div>
+      <a class="item " >
+         性别
+        <span class="item-note">
+            女
+          </span>
       </a>
-
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-ios-telephone"></i> Enter phone number
+      <a class="item " >
+         手机
+        <span class="item-note">
+            13846852148
+          </span>
       </a>
-
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-wifi"></i> Enter wireless password
+      <a class="item" >
+        工作电话
+        <span class="item-note">
+        65285555-968
+      </span>
       </a>
-
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-card"></i> Enter card information
+      <a class="item" >
+        学历
+        <span class="item-note">
+          本科
+        </span>
       </a>
-
+      <div class="item item-divider">
+系统设置
+  </div>
+      <ion-list>
+        <ion-toggle ng-model="settings.enableFriends">
+          接收通知
+        </ion-toggle>
+      </ion-list>
     </div>
-    <button class="button button-block button-dark" ng-click="logout()">
-      退出登录
-    </button>
+
+    <div class="padding">
+      <button class="button button-block button-dark" ng-click="logout()">
+        退出登录
+      </button>
+    </div>
+
   </ion-content>
 </ion-view>

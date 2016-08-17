@@ -1,7 +1,7 @@
 // Ionic Starter App
-angular.module('starter', ['ionic', 'starter.controllers','starter.controllersd', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $rootScope, $state, $location,$ionicModal) {
+.run(function($ionicPlatform, $rootScope, $state, $location, $ionicModal) {
   $ionicPlatform.ready(function() {
     $rootScope.$host = '';
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -10,7 +10,17 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.controllersd'
       $rootScope.$host = 'http://218.249.66.27:8888/';
       //启动极光推送服务
       window.plugins.jPushPlugin.init();
+      if (device.platform != "Android") {
+        window.plugins.jPushPlugin.setDebugModeFromIos();
+        window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+      } else {
+        window.plugins.jPushPlugin.setDebugMode(true);
+        window.plugins.jPushPlugin.setStatisticsOpen(true);
+      }
       window.plugins.jPushPlugin.setTagsWithAlias([], window.localStorage.acc);
+
+
+
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -19,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.controllersd'
     if (window.localStorage.token) {
       $rootScope.$token = window.localStorage.token;
     } else {
-      //$state.go("login",{},{reload:true});
+
       window.location.href = 'login.html';
     }
     $ionicModal.fromTemplateUrl('templates/pic-preview.html', {
@@ -29,6 +39,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.controllersd'
     }).then(function(modal) {
       $rootScope.preview = modal;
     });
+
+    // (function() {
+    //   var openRequest = localDatabase.indexedDB.open(dbName);
+    //   openRequest.onerror = function(e) {
+    //     console.log("Database error: " + e.target.errorCode);
+    //   };
+    //   openRequest.onsuccess = function(event) {
+    //     localDatabase.db = openRequest.result;
+    //   };
+    // })();
   });
 })
 
@@ -39,7 +59,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.controllersd'
   $ionicConfigProvider.platform.android.tabs.style('standard');
   $ionicConfigProvider.platform.android.tabs.position('standard');
   $ionicConfigProvider.platform.ios.navBar.alignTitle('center');
-  $ionicConfigProvider.platform.android.navBar.alignTitle('left');
+  $ionicConfigProvider.platform.android.navBar.alignTitle('center');
   $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
   $ionicConfigProvider.platform.ios.views.transition('ios');
@@ -131,34 +151,37 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.controllersd'
 })
 
 .config(['$httpProvider', function($httpProvider) {
-  function authInterceptor($location, $injector,$q) {
-    var interceptor = {
-      'request': function(config) {
-        config.headers = config.headers || {};
+    function authInterceptor($location, $injector, $q) {
+      var interceptor = {
+        'request': function(config) {
+          config.headers = config.headers || {};
 
-        if (window.localStorage.token) {
-          config.headers.Authorization = window.localStorage.token;
-        }
-        return config;
-      },
-      'responseError': function(response) {
-        if (response.status === 401) {
+          if (window.localStorage.token) {
+            config.headers.Authorization = window.localStorage.token;
+          }
+          return config;
+        },
+        'responseError': function(response) {
+          if (response.status === 401) {
             //$injector.get('$state').go("login",{},{reload:true});
             window.location.href = 'login.html';
           }
-        return $q.reject(response);
-      }
-    };
-    return interceptor;
-  }
-  authInterceptor.$inject = ['$location', '$injector','$q'];
-  $httpProvider.interceptors.push(authInterceptor);
-
-}])
-.filter(
-    'to_html', ['$sce', function ($sce) {
-        return function (text) {
-            return $sce.trustAsHtml(text);
+          return $q.reject(response);
         }
+      };
+      return interceptor;
+    }
+    authInterceptor.$inject = ['$location', '$injector', '$q'];
+    $httpProvider.interceptors.push(authInterceptor);
+
+  }])
+  .filter(
+    'to_html', ['$sce', function($sce) {
+      return function(text) {
+        return $sce.trustAsHtml(text);
+      }
     }]
-) ;
+  );
+
+
+var $controllers = angular.module('starter.controllers', []);

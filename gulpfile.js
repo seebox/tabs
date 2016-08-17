@@ -2,36 +2,29 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
-var sass = require('gulp-sass');
+
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  ctrl: ['www/js/controllers/*.js']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['concatctrl','watch']);
 
-gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
-    .pipe(sass())
-    .on('error', sass.logError)
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({
-      extname: '.min.css'
-    }))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
-});
+
 
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+
+  gulp.watch(paths.ctrl, ['concatctrl']);
 });
 
+gulp.task('concatctrl', function () {
+    gulp.src('./www/js/controllers/*.js')
+        .pipe(concat('controllers.js'))//合并后的文件名
+        .pipe(gulp.dest('./www/js'));
+});
 gulp.task('install', ['git-check'], function() {
   return bower.commands.install()
     .on('log', function(data) {

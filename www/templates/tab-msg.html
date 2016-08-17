@@ -1,11 +1,15 @@
 <ion-view view-title="消息">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item">
-        <h2>关于我院赴马来西亚参加APEC运输工作组第43次会议公示的通知</h2>
-
+  <ion-content class="padding stable-bg">
+    <div class="list card" ng-repeat="play in playlists">
+      <div class="item item-avatar" >
+        <img src="http://www.phonegap100.com/data/pgapp/1444842421.png">
+        <h2>{{play.body.content}}</h2>
+        <p>-{{play.body.type}}</p>
       </div>
-      <div class="item item-image"><img src="img/card_share.jpg"></div>
+      <div class="item item-body">
+        <a class="subdued">{{play.body.sendername}}</a>
+        <a class="subdued">{{play.body.sendtime}}</a>
+      </div>
     </div>
   </ion-content>
 </ion-view>

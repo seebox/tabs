@@ -34,6 +34,22 @@ angular.module('starter.services', [])
         });
 
       }
+    },
+    picture: function(items,index){
+      $rootScope.preview.show();
+      var pswpElement = document.querySelectorAll('.pswp')[0];
+      // define options (if needed)
+      var options = {
+        history: false,
+        index:index
+      };
+
+      // Initializes and opens PhotoSwipe
+      $rootScope.pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+      $rootScope.pswp.init();
+      $rootScope.pswp.listen('close', function() {
+        $rootScope.preview.hide();
+      });
     }
   };
 });
