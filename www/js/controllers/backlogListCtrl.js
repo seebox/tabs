@@ -1,6 +1,6 @@
 $controllers
 
-.controller('backlogListCtrl', function($scope, $http, $rootScope) {
+.controller('BacklogListCtrl', function($scope, $http, $rootScope) {
 	
 	
 	

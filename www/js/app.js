@@ -147,9 +147,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.backlog-list', {
       url: '/backlog/:en',
       views: {
-        'tab-backlog': {
+        'tab-work': {
           templateUrl: 'templates/backlog-list.html',
-          controller: 'backlogListCtrl'
+          controller: 'backloglistCtrl'
         }
       }
     })
