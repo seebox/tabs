@@ -36,35 +36,21 @@
 				<a href="#/tab/backlog/todo" class="icon ion-chevron-right jump-m-w"></a>
 			</div>
 
-			<a class="item item-avatar" href="#"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>title</h2>
+			<a class="item item-avatar" href="#" ng-repeat="data in todoList"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>[{{data.type}}]</h2>
 			<p>
-				Butterfinger
-			</p> </a>
-			<a class="item item-avatar" href="#"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>title</h2>
-			<p>
-				Butterfinger
-			</p> </a>
-			<a class="item item-avatar" href="#"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>title</h2>
-			<p>
-				Butterfinger
+				{{data.title}}
 			</p> </a>
 
 			<div class="item item-divider">
 				待我查阅
+				<a href="#/tab/backlog/toread" class="icon ion-chevron-right jump-m-w"></a>
 			</div>
 
-			<a class="item item-avatar" href="#"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>title</h2>
+			<a class="item item-avatar" href="#" ng-repeat="data in toreadList"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>[{{data.type}}]</h2>
 			<p>
-				Butterfinger
+				{{data.title}}
 			</p> </a>
-			<a class="item item-avatar" href="#"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>title</h2>
-			<p>
-				Butterfinger
-			</p> </a>
-			<a class="item item-avatar" href="#"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>title</h2>
-			<p>
-				Butterfinger
-			</p> </a>
+
 		</div>
 	</ion-content>
 </ion-view>

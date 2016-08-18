@@ -149,7 +149,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'tab-work': {
           templateUrl: 'templates/backlog-list.html',
-          controller: 'backloglistCtrl'
+          controller: 'BacklogListCtrl'
         }
       }
     })
