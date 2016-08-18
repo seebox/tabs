@@ -1,0 +1,13 @@
+<ion-view view-title="{{title}}">
+	<ion-content>
+
+		<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+		<ion-list>
+				<a class="item item-avatar" href="#" ng-repeat="data in mytoList"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>[{{data.type}}]</h2>
+			<p>
+				{{data.title}}
+			</p> </a>
+		</ion-list>
+
+	</ion-content>
+</ion-view>

@@ -1,9 +1,6 @@
 {
   "name": "水科院办公",
   "app_id": "wti20160803",
-  "gulpStartupTasks": [
-    "watch"
-  ],
   "proxies": [
     {
       "path": "/lua-api",

@@ -143,6 +143,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    
+    .state('tab.backlog-list', {
+      url: '/backlog/:en',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/backlog-list.html',
+          controller: 'BacklogListCtrl'
+        }
+      }
+    })
 
   .state('tab.account', {
     url: '/account',
