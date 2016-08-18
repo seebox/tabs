@@ -56,22 +56,14 @@ $controllers.controller('BacklogListCtrl', function($scope, $http, $rootScope, $
 
 	$scope.onDrag = function($event) {
 		var dY = $event.gesture.deltaY;
-		var top = angular.element("#banner").offset().top;
-		console.log(top);
-		if (dY > 0) {
-			if (top > 47) {
-				$scope.bannerStyle = {
-					'width' : 'auto',
-					'height' : dY + 'px'
-				};
-			} else {
+		var top = angular.element('.scroll').css('transform').match(/\d+\.?\d*/g).pop();
+		if (dY > 0 && top == 0) {
 				$scope.bannerStyle = {
 					'width' : 'auto',
 					'height' : oH + dY + 'px'
 				};
 			}
 
-		}
 
 	};
 
