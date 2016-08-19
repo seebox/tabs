@@ -30,6 +30,9 @@
 .t-center{
 	text-align:center;
 }
+.f-r{
+	float:right;
+}
 
 /* tab-works */
 
@@ -41,4 +44,23 @@
 .jump-w{
 	color:black;
 	text-decoration:none;
+}
+
+/* tab-account */
+.profile{
+	text-align:center;
+}
+.profile .banner{
+	height:200px;
+}
+.profile .avatar{
+	border-radius:50%;
+	width:80px;
+	margin-top:-64px;
+}
+.ion-info-modify{
+	color:#ccc;
+	float:right;
+	margin-left:10px;
+	font-size:8px;
 }
