@@ -9,11 +9,11 @@ angular.module('starter.services', [])
         $rootScope.preview.show();
         $http.get($rootScope.$host + '/wx/pdf/pdf_pngs_info/' + atm.id).success(function(items) {
           var urls = [];
-          for (var i = 1; i <= atm.pagecount; i++) {
+          for (var i = 0; i <= atm.pagecount; i++) {
             urls.push({
-              src: $rootScope.$host + '/wx/pdf/page/' + atm.id + '/' + i.toString() + '.png',
-              w: items[i-1].width,
-              h: items[i-1].height
+              src: $rootScope.$host + '/wx/pdf/page/' + atm.id + '/' + (i+1).toString() + '.png',
+              w: items[i].width?items[i].width:800,
+              h: items[i].height?items[i].height:1200
             });
           }
           var pswpElement = document.querySelectorAll('.pswp')[0];
@@ -35,8 +35,25 @@ angular.module('starter.services', [])
 
       }
     },
-    picture: function(items,index){
+    picture: function(atms,preview){
       $rootScope.preview.show();
+      var items = [],
+        i = 0,
+        index = 0;
+      angular.forEach(atms, function(v, k) {
+        var picType = /jpg|png|bmp|gif|jpeg/;
+        if (v.type.toLowerCase().match(picType)) {
+          items.push({
+            src: $rootScope.$host + v.preview + '?token=' + $rootScope.$token,
+            w: v.width?v.width:800,
+            h: v.height?v.height:1200
+          });
+          i++;
+          if (v.preview = preview) {
+            index = i;
+          }
+        }
+      });
       var pswpElement = document.querySelectorAll('.pswp')[0];
       // define options (if needed)
       var options = {
