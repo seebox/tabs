@@ -16,23 +16,7 @@ $controllers
     if (atm.type.toLowerCase() == 'pdf') {
       $preview.pdf(atm);
     } else if (atm.type.toLowerCase().match(picType)) {
-      var items = [],
-        i = 0,
-        index = 0;
-      angular.forEach($scope.annodata.atms, function(v, k) {
-        if (v.type.toLowerCase().match(picType)) {
-          items.push({
-            src: $rootScope.$host + v.preview + '?token=' + $rootScope.$token,
-            w: v.width,
-            h: v.height
-          });
-          i++;
-          if (atm.preview = v.preview) {
-            index = i;
-          }
-        }
-      });
-      $preview.picture(items, index);
+      $preview.picture($scope.annodata.atms, atm.preview);
     } else if (atm.type.toLowerCase().match(docType)) {
       var ref = window.open(atm.preview, '_blank', 'location=yes');
     }
