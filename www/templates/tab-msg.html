@@ -1,15 +1,23 @@
+
 <ion-view view-title="消息">
-  <ion-content class="padding stable-bg">
-    <div class="list card" ng-repeat="play in playlists">
-      <div class="item item-avatar" >
-        <img src="http://www.phonegap100.com/data/pgapp/1444842421.png">
+  <ion-content>
+    
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="play in playlists" type="item-text-wrap" href="#/tab/anno/{{playlist.id}}">
+        <img ng-src="{{$host}}{{play.body.sendericon}}?token={{$token}}">
         <h2>{{play.body.content}}</h2>
-        <p>-{{play.body.type}}</p>
-      </div>
-      <div class="item item-body">
-        <a class="subdued">{{play.body.sendername}}</a>
-        <a class="subdued">{{play.body.sendtime}}</a>
-      </div>
-    </div>
+        <p>{{play.body.type}}</p>
+        <ion-option-button class="button-assertive" ng-click="read(play)">
+          置为已读
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll ng-if="moreDataCanBeLoaded()" on-infinite="loadData()">
+    </ion-infinite-scroll>
+
   </ion-content>
 </ion-view>

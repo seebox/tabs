@@ -2,12 +2,12 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, $ionicModal) {
+  $rootScope.$host = 'http://218.249.66.27:8888/';
   $ionicPlatform.ready(function() {
-    $rootScope.$host = '';
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-      $rootScope.$host = 'http://218.249.66.27:8888/';
+
       //启动极光推送服务
       window.plugins.jPushPlugin.init();
       if (device.platform != "Android") {
@@ -18,10 +18,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         window.plugins.jPushPlugin.setStatisticsOpen(true);
       }
       window.plugins.jPushPlugin.setTagsWithAlias([], window.localStorage.acc);
-
-
-
+    } else{
+      $rootScope.$host = '';
     }
+
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
