@@ -23,7 +23,5 @@
     "jpush-phonegap-plugin",
     "cordova-plugin-inappbrowser"
   ],
-  "cordovaPlatforms": [
-    "android"
-  ]
+  "cordovaPlatforms": []
 }
