@@ -34,46 +34,39 @@
 		<ion-modal-view style="background: #f5f5f5;">
 			<ion-header-bar class="bar bar-header bar-dark">
 				<button class="button button-clear" ng-click="closeModal()">取消</button>
-					<h1 class="title" ng-bind="modalTitle"></h1>
-				<button class="button button-clear button-balanced" ng-click="closeModal()">保存</button>
+				<h1 class="title" ng-bind="modalTitle"></h1>
+				<button class="button button-clear button-balanced" ng-click="submit()">保存</button>
 			</ion-header-bar>
 			<ion-content>
 				<label class="item item-input" ng-if="profileType=='mobile'">
-					<input type="tel" ng-model="profileObj.mobile">
+					<input type="tel" ng-model="profile.contact.mobile">
 				</label>
 				<label class="item item-input" ng-if="profileType=='officephone'">
-					<input type="tel" ng-model="profileObj.officephone">
+					<input type="tel" ng-model="profile.contact.officephone">
 				</label>
-				<ul class="list" ng-if="profileType=='sex'">
-					<li class="item">
+				<ul class="list" ng-if="profileType=='sex'" ng-model="profile.base.sex" change-select>
+					<li class="item" attr='男'>
 						男
-						<i class="ion-android-done positive f-r"></i>
 					</li>
-					<li class="item">
+					<li class="item" attr='女'>
 						女
-						<i class="ion-android-done positive f-r"></i>
 					</li>
 				</ul>
-				<ul class="list" ng-if="profileType=='degree'">
-					<li class="item">
+				<ul class="list" ng-if="profileType=='degree'" ng-model="profile.base.degree" change-select>
+					<li class="item" attr='博士后'>
 						博士后
-						<i class="ion-android-done positive f-r"></i>
 					</li>
-					<li class="item">
+					<li class="item" attr='博士'>
 						博士
-						<i class="ion-android-done positive f-r"></i>
 					</li>
-					<li class="item">
+					<li class="item" attr='硕士'>
 						 硕士
-						<i class="ion-android-done positive f-r"></i>
 					</li>
-					<li class="item">
+					<li class="item" attr='本科'>
 						本科
-						<i class="ion-android-done positive f-r"></i>
 					</li>
 					<li class="item">
 						专科
-						<i class="ion-android-done positive f-r"></i>
 					</li>
 				</ul>
 			</ion-content>
