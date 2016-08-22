@@ -1,49 +1,84 @@
 <ion-view view-title="设置">
-  <ion-content>
-    <div class="calm-bg" style="height:120px;text-align:center;"><img class="padding" style="border-radius: 50%;" src="http://www.phonegap100.com/data/pgapp/1444842421.png"></div>
-    <div class="list">
-      <div class="item item-divider">
-个人信息
-  </div>
-      <a class="item " >
-         性别
-        <span class="item-note">
-            女
-          </span>
-      </a>
-      <a class="item " >
-         手机
-        <span class="item-note">
-            13846852148
-          </span>
-      </a>
-      <a class="item" >
-        工作电话
-        <span class="item-note">
-        65285555-968
-      </span>
-      </a>
-      <a class="item" >
-        学历
-        <span class="item-note">
-          本科
-        </span>
-      </a>
-      <div class="item item-divider">
-系统设置
-  </div>
-      <ion-list>
-        <ion-toggle ng-model="settings.enableFriends">
-          接收通知
-        </ion-toggle>
-      </ion-list>
-    </div>
+	<ion-content>
+		<div class="profile">
+			<img class="banner" ng-src="{{$host}}{{profile.personal.banner}}?token={{$token}}">
+			<img class="avatar" ng-src="{{$host}}{{profile.personal.avatar48}}?token={{$token}}">
+		</div>
+		<div class="list">
+			<div class="item item-divider">
+				个人信息
+			</div>
+			<a class="item " ng-click="openModal('sex','性别')"> 性别 <i class="ion-chevron-right ion-info-modify"></i><span class="item-note" ng-bind="profile.base.sex"></span></a>
+			<a class="item " ng-click="openModal('mobile','手机')"> 手机<i class="ion-chevron-right ion-info-modify"></i> <span class="item-note" ng-bind="profile.contact.mobile"></span> </a>
+			<a class="item" ng-click="openModal('officephone','工作电话')"> 工作电话 <i class="ion-chevron-right ion-info-modify"></i><span class="item-note" ng-bind="profile.contact.officephone"></span> </a>
+			<a class="item" ng-click="openModal('degree','学历')"> 学历<i class="ion-chevron-right ion-info-modify"></i> <span class="item-note" ng-bind="profile.base.degree"></span> </a>
+			<div class="item item-divider">
+				系统设置
+			</div>
+			<ion-list>
+				<ion-toggle ng-model="settings.enableFriends">
+					接收通知
+				</ion-toggle>
+			</ion-list>
+		</div>
 
-    <div class="padding">
-      <button class="button button-block button-dark" ng-click="logout()">
-        退出登录
-      </button>
-    </div>
+		<div class="padding">
+			<button class="button button-block button-dark" ng-click="logout()">
+				退出登录
+			</button>
+		</div>
 
-  </ion-content>
+	</ion-content>
+
+	<script id="datum-modal.html" type="text/ng-template">
+		<ion-modal-view style="background: #f5f5f5;">
+			<ion-header-bar class="bar bar-header bar-dark">
+				<button class="button button-clear" ng-click="closeModal()">取消</button>
+					<h1 class="title" ng-bind="modalTitle"></h1>
+				<button class="button button-clear button-balanced" ng-click="closeModal()">保存</button>
+			</ion-header-bar>
+			<ion-content>
+				<label class="item item-input" ng-if="profileType=='mobile'">
+					<input type="tel" ng-model="profileObj.mobile">
+				</label>
+				<label class="item item-input" ng-if="profileType=='officephone'">
+					<input type="tel" ng-model="profileObj.officephone">
+				</label>
+				<ul class="list" ng-if="profileType=='sex'">
+					<li class="item">
+						男
+						<i class="ion-android-done positive f-r"></i>
+					</li>
+					<li class="item">
+						女
+						<i class="ion-android-done positive f-r"></i>
+					</li>
+				</ul>
+				<ul class="list" ng-if="profileType=='degree'">
+					<li class="item">
+						博士后
+						<i class="ion-android-done positive f-r"></i>
+					</li>
+					<li class="item">
+						博士
+						<i class="ion-android-done positive f-r"></i>
+					</li>
+					<li class="item">
+						 硕士
+						<i class="ion-android-done positive f-r"></i>
+					</li>
+					<li class="item">
+						本科
+						<i class="ion-android-done positive f-r"></i>
+					</li>
+					<li class="item">
+						专科
+						<i class="ion-android-done positive f-r"></i>
+					</li>
+				</ul>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+
 </ion-view>
+
