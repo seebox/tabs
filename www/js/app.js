@@ -2,7 +2,7 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, $ionicModal) {
-  $rootScope.$host = 'http://218.249.66.27:8888/';
+  $rootScope.$host = 'http://218.249.66.27:8888';
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -143,7 +143,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    
+
     .state('tab.backlog-list', {
       url: '/backlog/:en',
       views: {

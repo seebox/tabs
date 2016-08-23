@@ -21,7 +21,17 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "jpush-phonegap-plugin",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    {
+      "variables": {
+        "BILLING_KEY": "XXX"
+      },
+      "locator": "cc.fovea.cordova.purchase",
+      "id": "cc.fovea.cordova.purchase"
+    }
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android",
+    "ios"
+  ]
 }
