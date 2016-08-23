@@ -3,6 +3,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, $ionicModal) {
   $rootScope.$host = 'http://218.249.66.27:8888';
+  if (window.localStorage.token) {
+    $rootScope.$token = window.localStorage.token;
+  } else {
+    window.location.href = 'login.html';
+  }
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -26,12 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    if (window.localStorage.token) {
-      $rootScope.$token = window.localStorage.token;
-    } else {
 
-      window.location.href = 'login.html';
-    }
     $ionicModal.fromTemplateUrl('templates/pic-preview.html', {
       scope: $rootScope,
       animation: false,
