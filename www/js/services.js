@@ -9,7 +9,7 @@ angular.module('starter.services', [])
         $rootScope.preview.show();
         $http.get($rootScope.$host + '/wx/pdf/pdf_pngs_info/' + atm.id).success(function(items) {
           var urls = [];
-          for (var i = 0; i <= atm.pagecount; i++) {
+          for (var i = 0; i < items.length; i++) {
             urls.push({
               src: $rootScope.$host + '/wx/pdf/page/' + atm.id + '/' + (i+1).toString() + '.png',
               w: items[i].width?items[i].width:800,
