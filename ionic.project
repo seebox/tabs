@@ -33,8 +33,8 @@
     }
     ,
     {
-      "path":"/together",
-      "proxyUrl":"http://218.249.66.27:8888/together"
+      "path":"/zone",
+      "proxyUrl":"http://218.249.66.27:8888/zone"
     }
   ]
 

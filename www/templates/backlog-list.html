@@ -3,11 +3,18 @@
 
 		<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
 		<ion-list>
-				<a class="item item-avatar" href="#" ng-repeat="data in mytoList"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>[{{data.type}}]</h2>
+			<a class="item item-avatar" href="#" ng-repeat="data in mytoList"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>[{{data.type}}]</h2>
 			<p>
 				{{data.title}}
 			</p> </a>
 		</ion-list>
+		
+		<div class="empty" ng-if="empty">
+			<i class="ion-ios-albums-outline"></i>
+			暂时没有{{title}}
+		</div>
+
+		<ion-infinite-scroll on-infinite="loadData()" ng-if="moreDataCanBeLoaded()"></ion-infinite-scroll>
 
 	</ion-content>
 </ion-view>

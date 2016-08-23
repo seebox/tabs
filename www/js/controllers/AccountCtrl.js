@@ -34,7 +34,7 @@ $controllers.controller('AccountCtrl', function($scope, $http, $ionicModal, $roo
 		};
 		$http({
 			method : 'post',
-			url : $rootScope.$host + '/together/japi/user/profile/modify?timer=' + new Date().getTime(),
+			url : $rootScope.$host + '/zone/japi/zone/user/profile/modify',
 			data : json,
 			headers : {
 				'Content-Type' : 'application/x-www-form-urlencoded'
