@@ -3,7 +3,8 @@
   "app_id": "wti20160803",
   "gulpStartupTasks":[
     "concatctrl",
-    "watch"
+    "watch",
+    "sass"
   ],
   "proxies": [
     {

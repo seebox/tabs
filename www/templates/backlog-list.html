@@ -1,5 +1,11 @@
 <ion-view view-title="{{title}}">
-	<ion-content>
+	<div class="bar bar-header bar-dark">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="$ionicGoBack()"><i class="icon ion-android-arrow-back"></i></button>
+    </div>
+    <h1 class="title">{{title}}</h1>
+  </div>
+	<ion-content class="has-header">
 
 		<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
 		<ion-list>
@@ -8,7 +14,7 @@
 				{{data.title}}
 			</p> </a>
 		</ion-list>
-		
+
 		<div class="empty" ng-if="empty">
 			<i class="ion-ios-albums-outline"></i>
 			暂时没有{{title}}

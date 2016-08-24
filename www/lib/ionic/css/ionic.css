@@ -1,17 +1,20 @@
 @charset "UTF-8";
-/*!
- * Copyright 2015 Drifty Co.
- * http://drifty.com/
- *
- * Ionic, v1.3.1
- * A powerful HTML5 mobile app framework.
- * http://ionicframework.com/
- *
- * By @maxlynch, @benjsperry, @adamdbradley <3
- *
- * Licensed under the MIT license. Please see LICENSE for more information.
- *
- */
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
@@ -4036,7 +4039,7 @@ a.subdued {
       font-size: 17px; }
       .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before, .bar button.button-icon .icon:before, .bar button.button-icon:before, .bar button.button-icon.icon-left:before, .bar button.button-icon.icon-right:before {
         vertical-align: top;
-        font-size: 32px;
+        font-size: 24px;
         line-height: 32px; }
     .bar .button.button-clear, .bar button.button-clear {
       padding-right: 2px;
@@ -4044,7 +4047,7 @@ a.subdued {
       font-weight: 300;
       font-size: 17px; }
       .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before, .bar button.button-clear .icon:before, .bar button.button-clear.icon:before, .bar button.button-clear.icon-left:before, .bar button.button-clear.icon-right:before {
-        font-size: 32px;
+        font-size: 24px;
         line-height: 32px; }
     .bar .button.back-button, .bar button.back-button {
       display: block;
@@ -8877,7 +8880,7 @@ progress {
   line-height: 53px; }
   .button-large .icon:before, .button-large.icon:before, .button-large.icon-left:before, .button-large.icon-right:before {
     padding-bottom: 2px;
-    font-size: 32px;
+    font-size: 24px;
     line-height: 51px; }
 
 .button-icon {
@@ -8893,7 +8896,7 @@ progress {
     box-shadow: none;
     opacity: 0.3; }
   .button-icon .icon:before, .button-icon.icon:before {
-    font-size: 32px; }
+    font-size: 24px; }
 
 .button-clear {
   -webkit-transition: opacity 0.1s;

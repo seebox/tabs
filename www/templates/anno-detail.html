@@ -1,10 +1,14 @@
 
 <ion-view view-title="通知公告详情">
-  <ion-nav-bar class="bar-stable bar-dark">
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-  </ion-nav-bar>
-  <ion-content class="padding">
+  <div class="bar bar-header bar-dark">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="$ionicGoBack()"><i class="icon ion-android-arrow-back"></i></button>
+    </div>
+    <h1 class="title">通知公告详情</h1>
+
+  </div>
+
+  <ion-content class="padding has-header">
 
     <h2>{{annodata.title}}</h2>
     <p ng-bind-html="annodata.content|to_html"></p>

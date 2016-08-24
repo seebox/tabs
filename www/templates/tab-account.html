@@ -1,5 +1,8 @@
 <ion-view view-title="设置">
-	<ion-content>
+	<div class="bar bar-header bar-dark">
+    <h1 class="title">设置</h1>
+  </div>
+	<ion-content class="stable-bg has-header">
 		<div class="profile">
 			<img class="banner" ng-src="{{$host}}{{profile.personal.banner}}?token={{$token}}">
 			<img class="avatar" ng-src="{{$host}}{{profile.personal.avatar48}}?token={{$token}}">
@@ -74,4 +77,3 @@
 	</script>
 
 </ion-view>
-

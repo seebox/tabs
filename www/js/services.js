@@ -6,7 +6,9 @@ angular.module('starter.services', [])
   return {
     pdf: function(atm) {
       if (atm.pagecount) {
+
         $rootScope.preview.show();
+
         $http.get($rootScope.$host + '/wx/pdf/pdf_pngs_info/' + atm.id).success(function(items) {
           var urls = [];
           for (var i = 0; i < items.length; i++) {

@@ -1,10 +1,13 @@
 
 <ion-view view-title="通知公告">
-  <ion-nav-bar class="bar-stable bar-dark">
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-  </ion-nav-bar>
-  <ion-content class="stable-bg">
+  <div class="bar bar-header bar-dark">
+
+    <h1 class="title">通知公告</h1>
+    <div class="buttons">
+      <button class="button button-clear"><i class="icon ion-android-add"></i></button>
+    </div>
+  </div>
+  <ion-content class="stable-bg has-header">
 
     <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
     </ion-refresher>

@@ -34,7 +34,7 @@ $controllers.controller('AccountCtrl', function($scope, $http, $ionicModal, $roo
 		};
 		$http({
 			method : 'post',
-			url : $rootScope.$host + '/together/japi/user/profile/modify?timer=' + new Date().getTime(),
+			url : $rootScope.$host + '/zone/japi/zone/user/profile/modify',
 			data : json,
 			headers : {
 				'Content-Type' : 'application/x-www-form-urlencoded'
@@ -213,16 +213,25 @@ $controllers.controller('BacklogListCtrl', function($scope, $http, $rootScope, $
 		$http.get($rootScope.$host + '/application/japi/application/my' + $stateParams.en + 'list')
 		.success(function(data) {
 			$scope.mytoList = data;
+			$scope.empty=data.length==0?true:false;
 		}).finally(function() {
             $scope.$broadcast('scroll.refreshComplete');
+            $scope.$broadcast('scroll.infiniteScrollComplete');
         });
 	};
 	
 	$scope.doRefresh = function() {
 		$scope.loadData();
 	};
+
+	$scope.$on('stateChangeSuccess', function() {
+		$scope.loadData();
+	}); 
+
+	$scope.moreDataCanBeLoaded=function(){
+		return $scope.mytoList?false:true;
+	};
 	
-	$scope.loadData();
 })
 
 .controller('WorkCtrl', function($scope, $http, $rootScope) {

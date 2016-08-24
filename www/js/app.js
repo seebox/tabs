@@ -2,27 +2,38 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, $ionicModal) {
+
   $rootScope.$host = 'http://218.249.66.27:8888';
+
   if (window.localStorage.token) {
     $rootScope.$token = window.localStorage.token;
   } else {
     window.location.href = 'login.html';
   }
+
+  $ionicModal.fromTemplateUrl('templates/pic-preview.html', {
+    scope: $rootScope,
+    animation: false,
+    backdropClickToClose: true
+  }).then(function(modal) {
+    $rootScope.preview = modal;
+  });
+
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
       //启动极光推送服务
-      window.plugins.jPushPlugin.init();
-      if (device.platform != "Android") {
-        window.plugins.jPushPlugin.setDebugModeFromIos();
-        window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
-      } else {
-        window.plugins.jPushPlugin.setDebugMode(true);
-        window.plugins.jPushPlugin.setStatisticsOpen(true);
-      }
-      window.plugins.jPushPlugin.setTagsWithAlias([], window.localStorage.acc);
+      // window.plugins.jPushPlugin.init();
+      // if (device.platform != "Android") {
+      //   window.plugins.jPushPlugin.setDebugModeFromIos();
+      //   window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+      // } else {
+      //   window.plugins.jPushPlugin.setDebugMode(true);
+      //   window.plugins.jPushPlugin.setStatisticsOpen(true);
+      // }
+      // window.plugins.jPushPlugin.setTagsWithAlias([], window.localStorage.acc);
     } else{
       $rootScope.$host = '';
     }
@@ -32,24 +43,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
 
-    $ionicModal.fromTemplateUrl('templates/pic-preview.html', {
-      scope: $rootScope,
-      animation: false,
-      backdropClickToClose: true
-    }).then(function(modal) {
-      $rootScope.preview = modal;
-    });
-
-    // (function() {
-    //   var openRequest = localDatabase.indexedDB.open(dbName);
-    //   openRequest.onerror = function(e) {
-    //     console.log("Database error: " + e.target.errorCode);
-    //   };
-    //   openRequest.onsuccess = function(event) {
-    //     localDatabase.db = openRequest.result;
-    //   };
-    // })();
   });
+
+  // (function() {
+  //   var openRequest = localDatabase.indexedDB.open(dbName);
+  //   openRequest.onerror = function(e) {
+  //     console.log("Database error: " + e.target.errorCode);
+  //   };
+  //   openRequest.onsuccess = function(event) {
+  //     localDatabase.db = openRequest.result;
+  //   };
+  // })();
+
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
