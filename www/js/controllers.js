@@ -162,13 +162,13 @@ $controllers
 
 $controllers
 
-  .controller('MsgCtrl', function($scope, $http, $rootScope) {
+  .controller('MsgCtrl', function($scope, $http, $rootScope,$ionicPlatform) {
 
   var count = 10,
     pagenum = 1,
     total = 10;
   $scope.playlists = [];
-  $scope.loadData = function(isRefresh) {
+
     $http.get($rootScope.$host + "/lua-api/v1/proxy/unreads", {
       params: {
         source: 'msg',
@@ -176,30 +176,46 @@ $controllers
         pagenum: pagenum
       }
     }).success(function(data) {
-      if (isRefresh) {
-        $scope.playlists = data.unreads;
-      } else {
-        $scope.playlists = $scope.playlists.concat(data.unreads);
-      }
-      total = data.total;
-      pagenum++;
-      $scope.$broadcast('scroll.infiniteScrollComplete');
-      $scope.$broadcast('scroll.refreshComplete');
+
+        //$scope.playlists = data.unreads;
+
     });
+    $ionicPlatform.ready(function() {
 
+          if (window.cordova) {
+          window.bluetoothSerial.list(function(data){
+            $scope.playlists = data;
+          }, function(data){
+             alert(2);
+          });
 
-  }
+        }
+    });
+    $scope.connect = function(item){
+      bluetoothSerial.connect(item.id, function(){
+         alert('yes');
+      }, function(){
+         alert(3);
+      });
+    };
+    $scope.send = function(){
+      bluetoothSerial.write('window\r\window\r\window\r\window\r\window\r\window\r\n\r\n\r\n\r\n', function(){
 
-  $scope.moreDataCanBeLoaded = function() {
-    return $scope.playlists.length < total;
-  }
-  $scope.doRefresh = function() {
-    count = 10;
-    pagenum = 1;
-    total = 10;
-    $scope.loadData(true);
-  }
-
+      }, function(){
+         alert(4);
+      });
+    };
+    (function() {
+      var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
+      var openRequest = indexedDB.open('wti');
+      openRequest.onerror = function(e) {
+        console.log("Database error: " + e.target.errorCode);
+      };
+      openRequest.onsuccess = function(event) {
+        console.log("Database success");
+        //window.localDatabase.db = openRequest.result;
+      };
+    })();
   $scope.read = function(item) {
     console.log(item);;
   }
