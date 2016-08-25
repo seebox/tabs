@@ -22,7 +22,7 @@ gulp.task('watch', function() {
 
 gulp.task('concatctrl', function () {
     gulp.src('./www/js/controllers/*.js')
-        .pipe(concat('controllers.js'))//合并后的文件名
+        .pipe(concat('controllers.js'))
         .pipe(gulp.dest('./www/js'));
 });
 
