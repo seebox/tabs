@@ -25,16 +25,14 @@
       "variables": {
         "API_KEY": "b1e44546c7b0e7dd4a58dcec"
       },
-      "locator": "jpush-phonegap-plugin",
-      "id": "jpush-phonegap-plugin"
+      "locator": "jpush-phonegap-plugin"
     },
     "cordova-plugin-inappbrowser",
     {
       "variables": {
         "BILLING_KEY": "XXX"
       },
-      "locator": "cc.fovea.cordova.purchase",
-      "id": "cc.fovea.cordova.purchase"
+      "locator": "cc.fovea.cordova.purchase"
     }
   ],
   "cordovaPlatforms": [
