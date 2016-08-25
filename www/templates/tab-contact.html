@@ -1,12 +1,42 @@
 <ion-view view-title="通讯录">
-  <div class="bar bar-header bar-dark">
-    <h1 class="title">通讯录</h1>
-    <div class="buttons">
-      <button class="button button-clear"><i class="icon ion-ios-search-strong"></i></button>
-    </div>
-  </div>
-  <ion-content class="has-header">
+	<div class="bar bar-header bar-dark">
+		<h1 class="title">通讯录</h1>
+		<div class="buttons">
+			<button class="button button-clear" ng-click='openModal()'>
+				<i class="icon ion-ios-search-strong"></i>
+			</button>
+		</div>
+	</div>
+	<ion-content class="has-header">
 
+		<div class='list'>
+			<div ng-repeat='organ in userList'>
+				<div class="item item-divider">
+					{{organ.name}}
+				</div>
+				<a class="item item-avatar" href="#" ng-repeat="user in organ.users"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
+			</div>
+		</div>
 
-  </ion-content>
+	</ion-content>
+
+	<script id="search-modal.html" type="text/ng-template">
+		<ion-modal-view style="background: #f5f5f5;">
+			<ion-header-bar class="bar bar-header item-input-inset">
+				 <label class="item-input-wrapper">
+			        <i class="icon ion-ios-search placeholder-icon"></i>
+			        <input type="search" placeholder="搜索" ng-model="query.txt" ng-change="search(query.txt)">
+			      </label>
+			      <button class="button button-clear button-balanced" ng-click='closeModal()'>
+			        	取消
+			      </button>
+			</ion-header-bar>
+			<ion-content>
+				<div class='list'>
+					<a class="item item-avatar" href="#" ng-repeat="user in result"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
+				</div>
+			</ion-content>
+		</ion-modal-view>
+	</script>
+
 </ion-view>
