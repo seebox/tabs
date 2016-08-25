@@ -155,6 +155,13 @@ $controllers
 
 $controllers
 
+.controller('ContactCtrl', function($scope, $http, $rootScope) {
+
+
+});
+
+$controllers
+
   .controller('MsgCtrl', function($scope, $http, $rootScope) {
 
   var count = 10,
