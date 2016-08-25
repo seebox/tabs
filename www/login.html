@@ -41,24 +41,30 @@
         <div class="padding">
           <button class="button button-block button-positive" ng-click="doLogin()">确认登录</button>
         </div>
+        <div class="padding">
+          <input type="file" value="upload files">
+        </div>
       </div>
     </div>
   <script>
     angular.module('myApp', ['ionic'])
       .controller('Login', function($ionicPlatform,$scope,$http,$ionicPopup,$timeout,$ionicLoading) {
         $scope.isAuth = window.localStorage.token;
+        var host = 'http://218.249.66.27:8888';
         $ionicPlatform.ready(function() {
-          var host = '';
           if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
-            host = 'http://218.249.66.27:8888';
+          }else{
+            host = '';
           }
+        });
         $scope.loginData = {};
         $scope.doLogin = function() {
           $ionicLoading.show({
            template: '正在加载...'
           });
+
           $http.post(host + '/gettoken', {
             account: $scope.loginData.username,
             password: $scope.loginData.password
@@ -83,7 +89,7 @@
           });
         };
 
-      });
+
       });
   </script>
 </body>

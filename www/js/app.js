@@ -25,15 +25,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       cordova.plugins.Keyboard.disableScroll(true);
 
       //启动极光推送服务
-      // window.plugins.jPushPlugin.init();
-      // if (device.platform != "Android") {
-      //   window.plugins.jPushPlugin.setDebugModeFromIos();
-      //   window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
-      // } else {
-      //   window.plugins.jPushPlugin.setDebugMode(true);
-      //   window.plugins.jPushPlugin.setStatisticsOpen(true);
-      // }
-      // window.plugins.jPushPlugin.setTagsWithAlias([], window.localStorage.acc);
+       window.plugins.jPushPlugin.init();
+       if (device.platform != "Android") {
+        window.plugins.jPushPlugin.setDebugModeFromIos();
+         window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0);
+       } else {
+         window.plugins.jPushPlugin.setDebugMode(true);
+         window.plugins.jPushPlugin.setStatisticsOpen(true);
+       }
+       window.plugins.jPushPlugin.setTagsWithAlias([], window.localStorage.acc);
     } else{
       $rootScope.$host = '';
     }

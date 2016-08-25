@@ -21,7 +21,13 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "jpush-phonegap-plugin",
+    {
+      "variables": {
+        "API_KEY": "b1e44546c7b0e7dd4a58dcec"
+      },
+      "locator": "jpush-phonegap-plugin",
+      "id": "jpush-phonegap-plugin"
+    },
     "cordova-plugin-inappbrowser",
     {
       "variables": {
