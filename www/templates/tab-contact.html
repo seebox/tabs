@@ -49,7 +49,27 @@
 				<h1 class="title">个人资料</h1>
 			</ion-header-bar>
 			<ion-content>
-				
+				<div class="profile">
+					<img class="banner" ng-src="{{$host}}{{profile.banner}}?token={{$token}}">
+					<img class="details-avatar" ng-src="{{$host}}{{profile.avatar48}}?token={{$token}}"> 
+				</div>
+				<ul class='list' style="margin-top:-82px;">
+					<li class="item" style="padding-left:88px;">
+						<h2 ng-bind='profile.name'></h2> <p ng-bind='profile.ops'></p>
+					</li>
+					<li class="item">
+						<span class="details-title f-l">邮箱</span><span ng-bind="profile.email"></span>
+					</li>
+					<li class="item" ng-if="profile.weixin">
+						<span class="details-title f-l">微信号</span><span ng-bind="profile.weixin"></span>
+					</li>
+					<li class="item" ng-if="profile.mobile">
+						<span class="details-title f-l">电话</span><span ng-bind="profile.mobile"></span>
+					</li>
+					<li class="item" ng-if="profile.officephone">
+						<span class="details-title f-l">工作电话</span><span ng-bind="profile.officephone"></span>
+					</li>
+				</ul>
 			</ion-content>
 		</ion-modal-view>
 	</script>
