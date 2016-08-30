@@ -155,76 +155,118 @@ $controllers
 
 $controllers
 
-.controller('ContactCtrl', function($scope, $http, $rootScope) {
+  .controller('ChatCtrl', function($scope, $http, $rootScope, $stateParams) {
 
+    $http.get($rootScope.$host + '/lua-api/v1/user/getinfo',{
+      params: {
+        acc: $stateParams.acc
+      }
+    }).success(function(data){
+      $scope.user = data;
+      $rootScope.db.list.add({
+        id: data.id,
+        acc: data.acc,
+        name: data.name,
+        avatar: data.avatar100,
+        ops: data.ops
+      });
+  	});
+});
+
+$controllers
+
+.controller('ContactCtrl', function($scope, $http, $rootScope, $ionicModal) {
+	
+	$http.get($rootScope.$host + '/lua-api/v1/organ/users').success(function(data){
+		$scope.userList=data;
+	});
+	
+	$scope.query={};
+	$scope.search=function(query){
+		$scope.result=[];
+		var regx=eval('/' + query.replace(/(^\s*)|(\s*$)/g, "")+ '/g');
+		if(regx){
+			angular.forEach($scope.userList,function(v,k){
+				angular.forEach(v.users,function(m,n){
+					if(regx.test(m.name_pinyin)){
+						$scope.result.push(m);
+					}
+				});
+			});
+		}
+	};
+	
+	
+	$ionicModal.fromTemplateUrl('search-modal.html', {
+		scope : $scope,
+		focusFirstInput:true
+	}).then(function(modal) {
+		$scope.modal = modal;
+	});
+	
+	$scope.openModal = function(type,title) {
+		$scope.modal.show();
+		$scope.modalTitle=title;
+		$scope.profileType=type;
+	};
+	
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+		$scope.query={};
+		$scope.result=[];
+	};
+	
+	$scope.$on('$destroy', function() {
+		$scope.modal.remove();
+	});
 
 });
 
 $controllers
 
-  .controller('MsgCtrl', function($scope, $http, $rootScope,$ionicPlatform) {
+  .controller('MsgCtrl', function($scope, $http, $rootScope, $ionicPlatform) {
 
-  var count = 10,
-    pagenum = 1,
-    total = 10;
-  $scope.playlists = [];
-
-    $http.get($rootScope.$host + "/lua-api/v1/proxy/unreads", {
-      params: {
-        source: 'msg',
-        count: count,
-        pagenum: pagenum
-      }
-    }).success(function(data) {
-
-        //$scope.playlists = data.unreads;
-
+  $rootScope.db.list.orderBy("id")
+    .toArray()
+    .then(function(items) {
+      console.log(1);
+      $scope.playlists = items;
+      $scope.$apply();
     });
-    $ionicPlatform.ready(function() {
 
-          if (window.cordova) {
-          window.bluetoothSerial.list(function(data){
-            $scope.playlists = data;
-          }, function(data){
-             alert(2);
-          });
-
-        }
-    });
-    $scope.connect = function(item){
-      bluetoothSerial.connect(item.id, function(){
-         alert('yes');
-      }, function(){
-         alert(3);
-      });
-    };
-    $scope.send = function(){
-      bluetoothSerial.write('window\r\window\r\window\r\window\r\window\r\window\r\n\r\n\r\n\r\n', function(){
-
-      }, function(){
-         alert(4);
-      });
-    };
-    (function() {
-      var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
-      var openRequest = indexedDB.open('wti');
-      openRequest.onerror = function(e) {
-        console.log("Database error: " + e.target.errorCode);
-      };
-      openRequest.onsuccess = function(event) {
-        console.log("Database success");
-        //window.localDatabase.db = openRequest.result;
-      };
-    })();
+  $scope.activeUser = function(play){
+    $rootScope.chatlist.show();
+  }
   $scope.read = function(item) {
     console.log(item);;
   }
 
 
+  var socket = io('http://218.249.66.27:8888/webim?token='+encodeURIComponent($rootScope.$token), {
+		'transports' : ['websocket', 'polling']
+	});
+
+    socket.on('offline', function(data) {
+			data = JSON.parse(data);
+
+		});
   var onOpenNotification = function(event) {
-    alert(1);
+
   };
   document.addEventListener("jpush.openNotification", onOpenNotification, false);
+
+});
+
+$controllers
+
+  .controller('TabsCtrl', function($scope, $http, $rootScope, $ionicPlatform,$ionicTabsDelegate,$state,$stateParams) {
+
+    $scope.selectTabWithIndex = function(index) {
+      $state.transitionTo('tab.anno', $stateParams, {
+    reload: true, inherit: false, notify: true
+  });
+    //$ionicTabsDelegate.select(index,true);
+    }
 
 });
 

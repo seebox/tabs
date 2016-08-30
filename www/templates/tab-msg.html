@@ -9,17 +9,14 @@
   <ion-content class="has-header">
 
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="play in playlists" ng-click="connect(play)" type="item-text-wrap">
-        <img ng-src="{{$host}}{{play.body.sendericon}}?token={{$token}}">
-        <h2>{{play.id}}</h2>
-        <p>{{play.name}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="play in playlists" ng-click="activeUser(play)" type="item-text-wrap">
+        <img ng-src="{{$host}}{{play.avatar}}?token={{$token}}">
+        <h2>{{play.name}}</h2>
+        <p>{{play.ops}}</p>
         <ion-option-button class="button-assertive" ng-click="read(play)">
           置为已读
         </ion-option-button>
       </ion-item>
-      <div class="padding">
-        <button class="button button-block button-positive" ng-click="send()">确认登录</button>
-      </div>
     </ion-list>
 
 

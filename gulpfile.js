@@ -8,17 +8,34 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 
 var paths = {
-  ctrl: ['www/js/controllers/*.js']
+  ctrl: ['www/js/controllers/*.js'],
+  libs:['www/lib/ionic/js/ionic.min.js',
+  'www/lib/ionic/js/angular/angular.min.js',
+  'www/lib/ionic/js/angular/angular-animate.min.js',
+  'www/lib/ionic/js/angular/angular-sanitize.min.js',
+  'www/lib/ionic/js/angular-ui/angular-ui-router.min.js',
+  'www/lib/ionic/js/ionic-angular.min.js']
 };
-
+/*!
+ * ionic.bundle.js is a concatenation of:
+ * ionic.js, angular.js, angular-animate.js,
+ * angular-sanitize.js, angular-ui-router.js,
+ * and ionic-angular.js
+ */
 gulp.task('default', ['concatctrl','watch']);
 
 
 
 gulp.task('watch', function() {
-
+  gulp.watch(paths.libs, ['concatlibs']);
   gulp.watch(paths.ctrl, ['concatctrl']);
 });
+gulp.task('concatlibs', function () {
+    gulp.src(paths.libs)
+        .pipe(concat('ionic.bundle.min.js'))
+        .pipe(gulp.dest('./www/lib/js'));
+});
+
 
 gulp.task('concatctrl', function () {
     gulp.src('./www/js/controllers/*.js')

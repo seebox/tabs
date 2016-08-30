@@ -18,7 +18,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   }).then(function(modal) {
     $rootScope.preview = modal;
   });
-
+  $ionicModal.fromTemplateUrl('templates/chat.html', {
+    scope: $rootScope,
+    animation: false,
+    backdropClickToClose: true
+  }).then(function(modal) {
+    $rootScope.chatlist = modal;
+  });
+  $rootScope.db = new Dexie("msglist");
+  $rootScope.db.version(1).stores({
+    list: "id,acc,name,avatar,ops"
+  });
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -57,11 +67,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $ionicConfigProvider.platform.android.tabs.style('standard');
   $ionicConfigProvider.platform.android.tabs.position('standard');
   $ionicConfigProvider.platform.ios.navBar.alignTitle('center');
-  $ionicConfigProvider.platform.android.navBar.alignTitle('center');
+  $ionicConfigProvider.platform.android.navBar.alignTitle('standard');
   $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
   $ionicConfigProvider.platform.ios.views.transition('ios');
   $ionicConfigProvider.platform.android.views.transition('android');
+
 
   $stateProvider
     .state('login', {
@@ -72,13 +83,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab', {
       url: '/tab',
       abstract: true,
-      templateUrl: 'templates/tabs.html'
+      templateUrl: 'templates/tabs.html',
+      controller: 'TabsCtrl'
     })
 
   // Each tab has its own nav history stack:
 
   .state('tab.msg', {
       url: '/msg',
+      cache:false,
       views: {
         'tab-msg': {
           templateUrl: 'templates/tab-msg.html',
@@ -86,6 +99,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('chat', {
+        url: '/chat/:acc',
+        templateUrl: 'templates/chat.html',
+        controller: 'ChatCtrl'
+      })
     .state('tab.anno', {
       url: '/anno',
       views: {
