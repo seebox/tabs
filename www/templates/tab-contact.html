@@ -2,7 +2,7 @@
 	<div class="bar bar-header bar-dark">
 		<h1 class="title">通讯录</h1>
 		<div class="buttons">
-			<button class="button button-clear" ng-click='openModal()'>
+			<button class="button button-clear" ng-click='openSearchModal()'>
 				<i class="icon ion-ios-search-strong"></i>
 			</button>
 		</div>
@@ -11,10 +11,13 @@
 
 		<div class='list'>
 			<div ng-repeat='organ in userList'>
-				<div class="item item-divider">
+				<div class="item item-divider" style='background-color:white;padding-top: 14px;padding-bottom: 14px;' ng-click='fold(organ)'>
+					<i ng-init='organ.folding="ion-arrow-down-b"' ng-class='organ.folding' style='color:#AAA;'></i>
+					&nbsp;&nbsp;
 					{{organ.name}}
+					<span class="f-r" style="color:#aaa;font-size:10px;">{{organ.nums}}</span>
 				</div>
-				<a class="item item-avatar" href="#" ng-repeat="user in organ.users"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
+				<a ng-show="!organ.userShow" class="item item-avatar" href="javascript:void(0)" ng-click="jumpdetails(user)" ng-repeat="user in organ.users"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
 			</div>
 		</div>
 
@@ -27,15 +30,55 @@
 			        <i class="icon ion-ios-search placeholder-icon"></i>
 			        <input type="search" placeholder="搜索" ng-model="query.txt" ng-change="search(query.txt)">
 			      </label>
-			      <button class="button button-clear button-balanced" ng-click='closeModal()'>
+			      <button class="button button-clear button-balanced" ng-click='closeSearchModal()'>
 			        	取消
 			      </button>
 			</ion-header-bar>
 			<ion-content>
 				<div class='list'>
-					<a class="item item-avatar" href="#" ng-repeat="user in result"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
+					<a class="item item-avatar" href="javascript:void(0)" ng-click="jumpdetails(user)" ng-repeat="user in result"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
 				</div>
 			</ion-content>
+		</ion-modal-view>
+	</script>
+	
+	<script id="details-modal.html" type="text/ng-template">
+		<ion-modal-view style="background: #f5f5f5;">
+			<ion-header-bar class="bar bar-header bar-dark">
+				<button class="button button-clear" ng-click="closeDetailsModal()"><i class="icon ion-android-arrow-back"></i></button>
+				<h1 class="title">个人资料</h1>
+			</ion-header-bar>
+			<ion-content>
+				<div class="profile">
+					<img class="banner" ng-src="{{$host}}{{profile.banner}}?token={{$token}}">
+					<img class="details-avatar" ng-src="{{$host}}{{profile.avatar48}}?token={{$token}}"> 
+				</div>
+				<ul class='list' style="margin-top:-82px;">
+					<li class="item" style="padding-left:88px;">
+						<h2 ng-bind='profile.name'></h2> <p ng-bind='profile.ops'></p>
+					</li>
+					<li class="item">
+						<span class="details-title f-l">邮箱</span><span ng-bind="profile.email"></span>
+					</li>
+					<li class="item" ng-if="profile.weixin">
+						<span class="details-title f-l">微信号</span><span ng-bind="profile.weixin"></span>
+					</li>
+					<li class="item" ng-if="profile.mobile">
+						<span class="details-title f-l">电话</span><span ng-bind="profile.mobile"></span>
+					</li>
+					<li class="item" ng-if="profile.officephone">
+						<span class="details-title f-l">工作电话</span><span ng-bind="profile.officephone"></span>
+					</li>
+				</ul>
+			</ion-content>
+			<ion-footer-bar align-title="left">
+				  <div style="width:50%;padding:0 5px;">
+				  	<button class="button button-balanced button-block" style="margin-top:0;">打电话</button>
+				  </div>
+				  <div  style="width:50%;padding:0 5px;">
+				  	<button class="button button-calm button-block" style="margin-top:0;">发消息</button>
+				  </div>
+				</ion-footer-bar>
 		</ion-modal-view>
 	</script>
 

@@ -33,6 +33,12 @@
 .f-r{
 	float:right;
 }
+.f-l{
+	float:left;
+}
+.d-b{
+	display:block;
+}
 .empty{
 	text-align: center;
 	padding-top:26%;
@@ -57,7 +63,7 @@
 
 /* tab-account */
 .profile{
-	text-align:center;
+	background-color: white;
 }
 .profile .banner{
 	width:100%;
@@ -65,11 +71,24 @@
 .profile .avatar{
 	border-radius:50%;
 	width:80px;
-	margin-top:-64px;
 }
 .ion-info-modify{
 	color:#ccc;
 	float:right;
 	margin-left:10px;
 	font-size:8px;
+}
+
+/* tab-contact */
+.details-avatar{
+	position:relative;
+	z-index: 3!improtant;
+	left:10px;
+	width:66px;
+	bottom:40px;
+	border-radius:50%;
+}
+.details-title{
+	width:72px;
+    color: #888;
 }
