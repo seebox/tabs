@@ -41,7 +41,12 @@
 				待我处理
 				<a href="#/tab/backlog/todo" class="icon ion-ios-arrow-right jump-m-w"></a>
 			</div>
-
+			<div class="t-center" ng-if="!load_todo" style="padding-top:6px;"><ion-spinner icon="ios-small"></ion-spinner></div>
+			<div class="empty" ng-if="emptyTodo" style="padding:4px 0;">
+				<i class="ion-ios-albums-outline" style="font-size:24px;"></i>
+				暂时没有待我处理
+			</div>
+			
 			<a class="item item-avatar" href="#" ng-repeat="data in todoList"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>[{{data.type}}]</h2>
 			<p>
 				{{data.title}}
@@ -51,7 +56,12 @@
 				待我查阅
 				<a href="#/tab/backlog/toread" class="icon ion-ios-arrow-right jump-m-w"></a>
 			</div>
-
+			<div class="t-center" ng-if="!load_toread" style="padding-top:6px;"><ion-spinner icon="ios-small"></ion-spinner></div>
+			<div class="empty" ng-if="emptyToread" style="padding:4px 0;">
+				<i class="ion-ios-albums-outline" style="font-size:24px;"></i>
+				暂时没有待我查阅
+			</div>
+			
 			<a class="item item-avatar" href="#" ng-repeat="data in toreadList"> <img src="http://www.phonegap100.com/data/pgapp/1444842421.png"> <h2>[{{data.type}}]</h2>
 			<p>
 				{{data.title}}

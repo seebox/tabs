@@ -14,10 +14,12 @@
 				{{data.title}}
 			</p> </a>
 		</ion-list>
-
-		<div class="empty" ng-if="empty">
-			<i class="ion-ios-albums-outline"></i>
-			暂时没有{{title}}
+		
+		<div style="padding-top:26%;">
+			<div class="empty" ng-if="empty">
+				<i class="ion-ios-albums-outline"></i>
+				暂时没有{{title}}
+			</div>
 		</div>
 
 		<ion-infinite-scroll on-infinite="loadData()" ng-if="moreDataCanBeLoaded()"></ion-infinite-scroll>

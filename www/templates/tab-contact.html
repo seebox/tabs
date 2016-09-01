@@ -12,12 +12,12 @@
 		<div class='list'>
 			<div ng-repeat='organ in userList'>
 				<div class="item item-divider" style='background-color:white;padding-top: 14px;padding-bottom: 14px;' ng-click='fold(organ)'>
-					<i ng-init='organ.folding="ion-arrow-down-b"' ng-class='organ.folding' style='color:#AAA;'></i>
+					<i ng-init='organ.folding="ion-arrow-right-b"' ng-class='organ.folding' style='color:#AAA;'></i>
 					&nbsp;&nbsp;
 					{{organ.name}}
 					<span class="f-r" style="color:#aaa;font-size:10px;">{{organ.nums}}</span>
 				</div>
-				<a ng-show="!organ.userShow" class="item item-avatar" href="javascript:void(0)" ng-click="jumpdetails(user)" ng-repeat="user in organ.users"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
+				<a ng-show="organ.userShow" class="item item-avatar" href="javascript:void(0)" ng-click="jumpdetails(user)" ng-repeat="user in organ.users"> <img ng-src="{{$host}}{{user.avatar}}?token={{$token}}"> <h2 ng-bind='user.name'></h2> <p ng-bind='user.ops'></p> </a>
 			</div>
 		</div>
 
