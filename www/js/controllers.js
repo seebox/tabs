@@ -7,7 +7,7 @@ $controllers.controller('AccountCtrl', function($scope, $http, $ionicModal, $roo
 		localStorage.removeItem("acc");
 		window.location.href = "login.html";
 	};
-	
+
 	$http.get($rootScope.$host + '/lua-api/v1/user/profile').success(function(data){
 		$scope.profile=data;
 	});
@@ -18,13 +18,13 @@ $controllers.controller('AccountCtrl', function($scope, $http, $ionicModal, $roo
 	}).then(function(modal) {
 		$scope.modal = modal;
 	});
-	
+
 	$scope.openModal = function(type,title) {
 		$scope.modal.show();
 		$scope.modalTitle=title;
 		$scope.profileType=type;
 	};
-	
+
 	$scope.submit=function(){
 		var json={
 			'mobile':$scope.profile.contact.mobile,
@@ -49,20 +49,20 @@ $controllers.controller('AccountCtrl', function($scope, $http, $ionicModal, $roo
 		}).success(function(data) {
 			$scope.modal.hide();
 		});
-		
+
 	};
-	
+
 	$scope.closeModal = function() {
 		$scope.modal.hide();
 	};
-	
+
 	$scope.$on('$destroy', function() {
 		$scope.modal.remove();
 	});
-	
+
 	$scope.$on('modal.hidden', function() {
 	});
-	
+
 
 })
 .directive('changeSelect', function() {
@@ -85,7 +85,7 @@ $controllers.controller('AccountCtrl', function($scope, $http, $ionicModal, $roo
 			};
 		}
 	};
-}); 
+});
 $controllers
 
 .controller('AnnoCtrl', function($scope, $http, $rootScope) {
@@ -176,11 +176,11 @@ $controllers
 $controllers
 
 .controller('ContactCtrl', function($scope, $http, $rootScope, $ionicModal) {
-	
+
 	$http.get($rootScope.$host + '/lua-api/v1/organ/users').success(function(data){
 		$scope.userList=data;
 	});
-	
+
 	$scope.query={};
 	$scope.search=function(query){
 		$scope.result=[];
@@ -195,29 +195,51 @@ $controllers
 			});
 		}
 	};
-	
-	
+
+	$scope.fold=function(organ){
+		organ.folding=organ.userShow?'ion-arrow-down-b':'ion-arrow-right-b';
+		organ.userShow=!organ.userShow;
+	};
+
+	$scope.jumpdetails=function(user){
+		$http.get($rootScope.$host + '/lua-api/v1/user/get/'+user.id).success(function(data){
+			$scope.profile=data;
+			$scope.detailsModal.show();
+		});
+	};
+
+
 	$ionicModal.fromTemplateUrl('search-modal.html', {
 		scope : $scope,
 		focusFirstInput:true
 	}).then(function(modal) {
-		$scope.modal = modal;
+		$scope.searchModal = modal;
 	});
-	
-	$scope.openModal = function(type,title) {
-		$scope.modal.show();
+
+	$scope.openSearchModal = function(type,title) {
+		$scope.searchModal.show();
 		$scope.modalTitle=title;
 		$scope.profileType=type;
 	};
-	
-	$scope.closeModal = function() {
-		$scope.modal.hide();
+
+	$scope.closeSearchModal = function() {
+		$scope.searchModal.hide();
 		$scope.query={};
 		$scope.result=[];
 	};
-	
+
+	$ionicModal.fromTemplateUrl('details-modal.html', {
+		scope : $scope,
+	}).then(function(modal) {
+		$scope.detailsModal = modal;
+	});
+
+	$scope.closeDetailsModal = function() {
+		$scope.detailsModal.hide();
+	};
+
 	$scope.$on('$destroy', function() {
-		$scope.modal.remove();
+		$scope.searchModal.remove();
 	});
 
 });
@@ -229,7 +251,6 @@ $controllers
   $rootScope.db.list.orderBy("id")
     .toArray()
     .then(function(items) {
-      console.log(1);
       $scope.playlists = items;
       $scope.$apply();
     });
@@ -284,19 +305,19 @@ $controllers.controller('BacklogListCtrl', function($scope, $http, $rootScope, $
             $scope.$broadcast('scroll.infiniteScrollComplete');
         });
 	};
-	
+
 	$scope.doRefresh = function() {
 		$scope.loadData();
 	};
 
 	$scope.$on('stateChangeSuccess', function() {
 		$scope.loadData();
-	}); 
+	});
 
 	$scope.moreDataCanBeLoaded=function(){
 		return $scope.mytoList?false:true;
 	};
-	
+
 })
 
 .controller('WorkCtrl', function($scope, $http, $rootScope) {
