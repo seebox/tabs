@@ -17,6 +17,7 @@ $controllers.controller('AccountCtrl', function($scope, $http, $ionicModal, $roo
 		focusFirstInput:true
 	}).then(function(modal) {
 		$scope.modal = modal;
+		
 	});
 
 	$scope.openModal = function(type,title) {
