@@ -4,8 +4,7 @@ $controllers
 
   $rootScope.db.list.orderBy("id")
     .toArray()
-    .then(function(items) {
-      console.log(1);
+    .then(function(items) {      
       $scope.playlists = items;
       $scope.$apply();
     });

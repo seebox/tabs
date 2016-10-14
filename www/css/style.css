@@ -92,3 +92,24 @@
 	width:72px;
     color: #888;
 }
+.chats-left{
+	text-align: left;
+	margin:10px 0;
+}
+.chats-right{
+	text-align: left;
+	margin-top:15px!important;
+}
+.chats-left .content{
+	border-radius: 3px;
+	background: #fff;
+	padding:5px 5px 15px;
+	float:left;
+}
+.chats-right .content{
+	border-radius: 3px;
+	background: #ccc;
+	padding:5px 5px 15px;
+	float:right;
+	word-break: break-all;
+}
