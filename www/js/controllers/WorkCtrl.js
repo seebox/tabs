@@ -35,10 +35,18 @@ $controllers.controller('BacklogListCtrl', function($scope, $http, $rootScope, $
 
 	$http.get($rootScope.$host + '/application/japi/application/mytodolist').success(function(data) {
 		$scope.todoList = data.slice(0, 5);
+		$scope.load_todo=true;
+		if(data.length<1){
+			$scope.emptyTodo=true;
+		}
 	});
 
 	$http.get($rootScope.$host + '/application/japi/application/mytoreadlist').success(function(data) {
 		$scope.toreadList = data.slice(0, 5);
+		$scope.load_toread=true;
+		if(data.length<1){
+			$scope.emptyToread=true;
+		}
 	});
 
 	$scope.active = function(item) {

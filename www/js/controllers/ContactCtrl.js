@@ -22,7 +22,7 @@ $controllers
 	};
 	
 	$scope.fold=function(organ){
-		organ.folding=organ.userShow?'ion-arrow-down-b':'ion-arrow-right-b';
+		organ.folding=organ.userShow?'ion-arrow-right-b':'ion-arrow-down-b';
 		organ.userShow=!organ.userShow;
 	};
 	
@@ -41,10 +41,8 @@ $controllers
 		$scope.searchModal = modal;
 	});
 	
-	$scope.openSearchModal = function(type,title) {
+	$scope.openSearchModal = function() {
 		$scope.searchModal.show();
-		$scope.modalTitle=title;
-		$scope.profileType=type;
 	};
 	
 	$scope.closeSearchModal = function() {
@@ -65,6 +63,7 @@ $controllers
 	
 	$scope.$on('$destroy', function() {
 		$scope.searchModal.remove();
+		$scope.detailsModal.remove();
 	});
 
 });
