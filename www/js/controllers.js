@@ -197,11 +197,7 @@ $controllers
 	};
 	
 	$scope.fold=function(organ){
-<<<<<<< HEAD
-		organ.folding=organ.userShow?'ion-arrow-down-b':'ion-arrow-right-b';
-=======
 		organ.folding=organ.userShow?'ion-arrow-right-b':'ion-arrow-down-b';
->>>>>>> e89d43efa270c2cf7383935b54dcda81c49e0a38
 		organ.userShow=!organ.userShow;
 	};
 	
@@ -220,15 +216,8 @@ $controllers
 		$scope.searchModal = modal;
 	});
 	
-<<<<<<< HEAD
-	$scope.openSearchModal = function(type,title) {
-		$scope.searchModal.show();
-		$scope.modalTitle=title;
-		$scope.profileType=type;
-=======
 	$scope.openSearchModal = function() {
 		$scope.searchModal.show();
->>>>>>> e89d43efa270c2cf7383935b54dcda81c49e0a38
 	};
 	
 	$scope.closeSearchModal = function() {
@@ -249,10 +238,7 @@ $controllers
 	
 	$scope.$on('$destroy', function() {
 		$scope.searchModal.remove();
-<<<<<<< HEAD
-=======
 		$scope.detailsModal.remove();
->>>>>>> e89d43efa270c2cf7383935b54dcda81c49e0a38
 	});
 
 });
